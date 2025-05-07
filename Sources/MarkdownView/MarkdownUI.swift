@@ -11,8 +11,8 @@ public final class MarkdownUI: UIViewRepresentable {
     self.markdownView.isScrollEnabled = false
   }
   
-  public func onTouchLink(perform action: @escaping ((URLRequest) -> Bool)) -> MarkdownUI {
-    self.markdownView.onTouchLink = action
+  public func onTouchLink(perform action: @escaping ((URL) -> Void)) -> MarkdownUI {
+      self.markdownView.onLinkActivated = action
     return self
   }
   
