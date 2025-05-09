@@ -175,7 +175,8 @@ extension MarkdownView: WKNavigationDelegate, WKScriptMessageHandler {
             // When a <details> collapses, subtract its inner height; add it back when expanded.
             let delta = isOpen ? 0 : -hNum.doubleValue
             currentHeight += delta
-            print("[MarkdownView] currentHeight: \(currentHeight) diff: \(delta)")
+            self.onRendered?(currentHeight)
+            print("[MarkdownView] currentHeight: \(currentHeight)")
         }
 
         if message.name == "updateHeight",
@@ -187,6 +188,7 @@ extension MarkdownView: WKNavigationDelegate, WKScriptMessageHandler {
             wv.invalidateIntrinsicContentSize()
             invalidateIntrinsicContentSize()
             currentHeight = height
+            self.onRendered?(currentHeight)
         }
     }
 }
